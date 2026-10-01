@@ -65,10 +65,10 @@ const submitForm = async (event) => {
                     <div className="w-full h-10 bg-slate-600/40 border border-indigo-400/60 rounded-md
                         flex justify-start items-center px-2 md:px-4 py-2 mb-4">
                         <User className="h-4 w-4 text-indigo-200/60 mr-2"/>
-                        <input id="name" minLength={1} value={formDetails.name} onChange={(event) => setFormDetails({
+                        <input id="name" minLength={1} value={formDetails.name} onChange={(event) => {setFormDetails({
                             ...formDetails,
                             name:event.target.value
-                        }) }
+                        }),setIsError(false)}}
                         type="text" placeholder="Enter your Full Name" required
                         className="w-full text-slate-200 text-md md:text-base px-2 outline-none"/>
                     </div>
@@ -79,10 +79,10 @@ const submitForm = async (event) => {
                     <div className="w-full h-10 bg-slate-600/40 border border-indigo-400/60 rounded-md
                         flex justify-start items-center px-2 md:px-4 py-2 mb-4">
                         <CalendarDays className="h-4 w-4 text-indigo-200/60 mr-2"/>
-                        <input id="age" value={formDetails.age} onChange={(event) => setFormDetails({
+                        <input id="age" value={formDetails.age} onChange={(event) => {setFormDetails({
                             ...formDetails,
                             age:Number(event.target.value)
-                        })}
+                        }), setIsError(false)}}
                         type="number" placeholder="Enter your age ex: 16" min={5} max={100} required
                         className="w-full text-slate-200 text-md md:text-base px-2 outline-none"/>
                     </div>

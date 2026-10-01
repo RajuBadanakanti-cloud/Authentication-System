@@ -25,9 +25,9 @@ const signup = async (userDetails) => {
             setIsError(false);
             setErrorMsg("");
 
-            const URL = "http://localhost:5000/auth/signup";
+            const URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
-            const response = await axios.post(URL, userDetails);
+            const response = await axios.post(`${URL}/auth/signup`, userDetails);
 
             setUser(response.data.user);
 
@@ -71,9 +71,9 @@ const login = async (credentials) => {
             setIsError(false);
             setErrorMsg("");
 
-            const URL = "http://localhost:5000/auth/login";
+            const URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
-            const response = await axios.post(URL, credentials);
+            const response = await axios.post(`${URL}/auth/login`, credentials);
 
             setUser(response.data.user);
 
@@ -114,13 +114,9 @@ const login = async (credentials) => {
 const logout = async () => {
     try {
         // Call backend logout API
-        const response = await axios.post(
-            "http://localhost:5000/auth/logout",
-            {},
-            {
-                withCredentials: true
-            }
-        );
+        const URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
+        const response = await axios.post(`${URL}/auth/logout`, {}, { withCredentials: true });
 
         console.log(response.data || "Successfully logout!");
 
