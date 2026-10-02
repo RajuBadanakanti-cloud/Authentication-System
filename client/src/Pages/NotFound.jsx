@@ -1,4 +1,6 @@
 
+// 
+
 const NotFound = () => {
     return (
         <div className="w-screen h-screen bg-slate-600
@@ -13,6 +15,7 @@ const NotFound = () => {
                 rounded-full mt-5 md:mt-10">
                 go back
                 </button>
+
             </section>
 
         </div>

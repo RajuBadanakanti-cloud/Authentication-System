@@ -112,29 +112,31 @@ const login = async (credentials) => {
 
 // LOGOUT
 const logout = async () => {
+    // Step 1: Immediately clear frontend authentication
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("user");
+
+    setUser(null);
+    setUserLogin(false);
+
+    // Step 2: Call backend in the background
     try {
-        // Call backend logout API
         const URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
-        const response = await axios.post(`${URL}/auth/logout`, {}, { withCredentials: true });
+        const response = await axios.post(
+            `${URL}/auth/logout`,
+            {},
+            { withCredentials: true }
+        );
 
-        console.log(response.data || "Successfully logout!");
+        console.log(response.data || "Successfully logged out!");
 
     } catch (err) {
         console.log(
-            err.response?.data?.message || "Logout error!"
+            err.response?.data?.message || "Backend logout error!"
         );
-
-    } finally {
-        // Clear frontend authentication data
-        localStorage.removeItem("accessToken");
-        localStorage.removeItem("user");
-
-        setUser(null);
-        setUserLogin(false);
     }
 };
-
 
 
     return (
